@@ -542,28 +542,6 @@ Deno.test(`ct=audio/mpeg, sbtftp`, async () => {
     await fileAsserts(ret.files, TEMP_DIR, ext, true);
 });
 
-Deno.test(`ct=video/mp4`, async () => {
-    const ext='mp4';
-    const req=await prepareRequest(ParserMeta.MIME_CONTENT_TYPES.MP4, undefined, ext);
-    const ret=await parse(req);
-    await rawAsserts(ret, undefined, ext);
-});
-
-Deno.test(`ct=video/mp4, sbtf`, async () => {
-    const ext='mp4';
-    const req=await prepareRequest(ParserMeta.MIME_CONTENT_TYPES.MP4, undefined, ext);
-    const ret=await parse(req, OPTIONS_SAVE_BODY_TO_FILE);
-    await fileAsserts(ret.files, LOCAL_DIR, ext, true);
-});
-
-Deno.test(`ct=video/mp4, sbtftp`, async () => {
-    const ext='mp4';
-    const req=await prepareRequest(ParserMeta.MIME_CONTENT_TYPES.MP4, undefined, ext);
-    const ret=await parse(req, OPTIONS_SAVE_BODY_TO_FILE_TO_PATH);
-    await fileAsserts(ret.files, TEMP_DIR, ext, true);
-});
-
-
 Deno.test(`ct=video/mpeg`, async () => {
     const ext='mpeg';
     const req=await prepareRequest(ParserMeta.MIME_CONTENT_TYPES.MPEG, undefined, ext);
@@ -981,7 +959,7 @@ Deno.test(`ct=multipart/form-data, body=k, 2f`, async () => {
 });
 
 Deno.test(`ct=multipart/form-data, body=k, 2f, bigfile`, async () => {
-    const exts=['.xls', '.mp4'];
+    const exts=['.xls', '.mp3'];
     const req=await prepareRequest(ParserMeta.MIME_CONTENT_TYPES.MULTIPART_FORM_DATA, 
                                     Object.assign({}, SIMPLE_JSON_FOR_MFD, {exts}), undefined);
     const ret=await parse(req);
